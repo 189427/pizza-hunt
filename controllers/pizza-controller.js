@@ -32,7 +32,7 @@ const pizzaController = {
   createPizza({ body }, res) {
     Pizza.create(body)
       .then((dbPizzaData) => res.json(dbPizzaData))
-      .ctach((err) => res.status(400).json(err));
+      .catch((err) => res.status(400).json(err));
   },
   //update pizza by id
   updatePizza({ params, body }, res) {
@@ -49,7 +49,7 @@ const pizzaController = {
 
   //delete pizza
   deletePizza({ params }, res) {
-    Pizza.findONeAndDelete({ _id: params.id })
+    Pizza.findOneAndDelete({ _id: params.id })
       .then((dbPizzaData) => {
         if (!dbPizzaData) {
           res.status(404).json({ message: "No pizza found with this id" });
